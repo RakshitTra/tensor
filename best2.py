@@ -9,11 +9,6 @@ print(device_lib.list_local_devices())
 from keras import backend as K
 K.tensorflow_backend._get_available_gpus()
 
-import boto3
-s3 = boto3.resource('s3')
-s3.meta.client.download_file('demo-bucket-cd9', 'test1','/tmp/TEST/test1')
-s3.meta.client.download_file('demo-bucket-cd9', 'train1','/tmp/train1')
-
 
 import numpy as np
 
