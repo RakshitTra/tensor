@@ -11,39 +11,24 @@ K.tensorflow_backend._get_available_gpus()
 
 import boto3
 s3 = boto3.resource('s3')
-s3.meta.client.download_file('demo-bucket-cd9', 'test1.zip','/test1.zip')
-s3.meta.client.download_file('demo-bucket-cd9', 'train1.zip','/train1.zip')
+s3.meta.client.download_file('demo-bucket-cd9', 'test1','/tmp/TEST/test1')
+s3.meta.client.download_file('demo-bucket-cd9', 'train1','/tmp/train1')
 
 
 import numpy as np
 
-import sys
-from zipfile import ZipFile
-from PIL import Image # $ pip install pillow
-img1=[]
-filename = sys.argv[0]
-with ZipFile('test1.zip') as archive:
-    for entry in archive.infolist():
-        with archive.open(entry) as file:
-            img = Image.open(file)
-            img=np.array(img)
-            img=img.tolist()
-            img1.append(img)
+import cv2
+import os
 
-
-img2=[]
-filename = sys.argv[0]
-with ZipFile('train1.zip') as archive:
-    for entry in archive.infolist():
-        with archive.open(entry) as file:
-            img = Image.open(file)
-            img=np.array(img)
-            img=img.tolist()
-            img2.append(img)
-
-
-
-
+def load_images_from_folder(folder):
+    images = []
+    for filename in os.listdir(folder):
+        img = cv2.imread(os.path.join(folder,filename))
+        if img is not None:
+            images.append(img)
+    return images
+img1=load_images_from_folder('test1')
+img2=load_images_from_folder('train1')
 x_test=np.array(img1)
 x_train=np.array(img2)
 
@@ -64,7 +49,7 @@ m4=((np.ones(1453))*3).tolist()
 y_test=l1+l2+l3+l4
 
 y_train=m1+m2+m3+m4
-
+y_train=np.array(y_train)
 
 batch_size = 64
 num_classes = 10
