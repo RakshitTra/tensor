@@ -12,7 +12,7 @@ K.tensorflow_backend._get_available_gpus()
 import boto3
 s3 = boto3.resource('s3')
 s3.meta.client.download_file('demo-bucket-cd9', 'test1.zip','/test1.zip')
-s3.meta.client.download_file('demo-bucket-cd9', 'train1.zip','/test1.zip')
+s3.meta.client.download_file('demo-bucket-cd9', 'train1.zip','/train1.zip')
 
 
 import numpy as np
@@ -21,7 +21,7 @@ import sys
 from zipfile import ZipFile
 from PIL import Image # $ pip install pillow
 img1=[]
-filename = sys.argv[1]
+filename = sys.argv[0]
 with ZipFile('test1.zip') as archive:
     for entry in archive.infolist():
         with archive.open(entry) as file:
@@ -32,7 +32,7 @@ with ZipFile('test1.zip') as archive:
 
 
 img2=[]
-filename = sys.argv[1]
+filename = sys.argv[0]
 with ZipFile('train1.zip') as archive:
     for entry in archive.infolist():
         with archive.open(entry) as file:
