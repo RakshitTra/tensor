@@ -18,7 +18,7 @@ import os
 def load_images_from_folder(folder):
     images = []
     for filename in os.system("cd /home/ubuntu/folder/folder && ls"):
-        img = cv2.imread(os.path.join(os.path.expanduser('~'),folder,folder,filename))
+        img = cv2.imread(os.path.join(os.path.expanduser('~'),'folder','folder','filename'))
         if img is not None:
             images.append(img)
     return images
@@ -45,10 +45,10 @@ y_test=l1+l2+l3+l4
 
 y_train=m1+m2+m3+m4
 y_train=np.array(y_train)
-
+y_test=np.array(y_test)
 batch_size = 64
 num_classes = 10
-epochs = 1
+epochs = 5
 
 # input image dimensions
 img_rows, img_cols = 320, 240
@@ -60,7 +60,7 @@ x_test /= 255
 print('x_train shape:', x_train.shape)
 print(x_train.shape[0], 'train samples')
 print(x_test.shape[0], 'test samples')
-
+input_shape = (img_rows, img_cols, 3)
 # convert class vectors to binary class matrices
 y_train = keras.utils.to_categorical(y_train, num_classes)
 y_test = keras.utils.to_categorical(y_test, num_classes)
