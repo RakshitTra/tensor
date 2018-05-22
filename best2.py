@@ -17,8 +17,8 @@ import os
 
 def load_images_from_folder(folder):
     images = []
-    for filename in os.listdir(folder):
-        img = cv2.imread(os.path.join(folder,filename))
+    for filename in os.system("cd /home/ubuntu/folder/folder && ls"):
+        img = cv2.imread(os.path.join(os.path.expanduser('~'),folder,folder,filename))
         if img is not None:
             images.append(img)
     return images
