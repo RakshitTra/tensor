@@ -65,6 +65,14 @@ y_test=l1+l2+l3+l4
 
 y_train=m1+m2+m3+m4
 
+
+batch_size = 64
+num_classes = 10
+epochs = 1
+
+# input image dimensions
+img_rows, img_cols = 320, 240
+
 x_train = x_train.astype('float32')
 x_test = x_test.astype('float32')
 x_train /= 255
