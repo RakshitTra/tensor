@@ -15,14 +15,16 @@ import numpy as np
 import cv2
 import os
 l=np.array()
-def load_images_from_folder(folder):
-    images = []
-    for filename in [os.system("cd /home/ubuntu/folder/folder && ls")]:
-        img = cv2.imread(os.path.join(os.path.expanduser('~'),'folder','folder','filename'))
-        l=img
-        if img is not None:
-            images.append(img)
-    return images
+img1 = []
+for filename in [os.system("cd /home/ubuntu/test1/test1 && ls")]:
+    l=str(filename)
+    img = cv2.imread(os.path.join(os.path.expanduser('~'),'test1','test1',l))
+    img1.append(img)
+img=[]
+for filename in [os.system("cd /home/ubuntu/train1/train1 && ls")]:
+    l=str(filename)
+    img = cv2.imread(os.path.join(os.path.expanduser('~'),'train1','train1',l))
+    img2.append(img)
 img1=load_images_from_folder('test1')
 img2=load_images_from_folder('train1')
 x_test=np.array(img1)
@@ -65,7 +67,9 @@ input_shape = (img_rows, img_cols, 3)
 # convert class vectors to binary class matrices
 y_train = keras.utils.to_categorical(y_train, num_classes)
 y_test = keras.utils.to_categorical(y_test, num_classes)
-
+from keras.models import Sequential
+from keras.layers import Dense, Dropout, Flatten
+from keras.layers import Conv2D, MaxPooling2D
 model = Sequential()
 model.add(Conv2D(32, kernel_size=(3, 3),
                  activation='relu',
