@@ -14,13 +14,13 @@ import numpy as np
 
 import cv2
 import os
-l=np.array()
+
 img1 = []
 for filename in [os.system("cd /home/ubuntu/test1/test1 && ls")]:
     l=str(filename)
     img = cv2.imread(os.path.join(os.path.expanduser('~'),'test1','test1',l))
     img1.append(img)
-img=[]
+img2=[]
 for filename in [os.system("cd /home/ubuntu/train1/train1 && ls")]:
     l=str(filename)
     img = cv2.imread(os.path.join(os.path.expanduser('~'),'train1','train1',l))
